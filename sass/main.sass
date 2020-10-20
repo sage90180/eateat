@@ -1,0 +1,436 @@
+$color_red: #8b0000
+
+html,body
+  padding: 0px
+  margin: 0px
+  background-image: url(/imgs/w-bg.png)
+  background-size: 100% auto
+  position: relative
+  scroll-behavior: smooth
+  *
+    transition: .3s
+  a
+    color: black
+    text-decoration: none
+  a:hover
+    color: black
+    text-decoration: none
+
+.top-wrap
+  background-image: url(/imgs/t-bg.png)
+  background-size: 100% auto
+.logo
+  background: black
+  padding: 20px 10px 5px 10px
+  text-align: center
+  position: relative
+  display: flex
+  align-items: center
+  img
+    max-width: 130px
+    margin: auto
+  &:after
+    position: absolute
+    width: 100%
+    left: 0px
+    height: 18px
+    bottom: -15px
+    background-image: url(/imgs/h-bg.png)
+    background-size: 1000px auto
+    content: ''
+.fa-bars
+  font-size: 30px
+  color: white
+  position: absolute
+  right: 20px
+  &:before
+    color: white
+header
+  text-align: center
+  .nav-item
+    position: relative
+    display: flex
+    align-items: center
+    padding: 0px 20px
+    margin: auto
+    &:before
+      content: ''
+      background-size: 100% auto
+      width: 30px
+      height: 30px
+      position: relative
+    &:after
+      content: ''
+      height: 20px
+      border-right: dashed 1px $color_red
+      position: absolute
+      right: 0px
+    &[data-icon="1"]:before
+      background-image: url(/imgs/icon-01.png)
+    &[data-icon="2"]:before
+      background-image: url(/imgs/icon-02.png)
+    &[data-icon="3"]:before
+      background-image: url(/imgs/icon-03.png)
+    &[data-icon="4"]:before
+      background-image: url(/imgs/icon-04.png)
+    .nav-link
+      font-size: 16px
+      font-weight: 500
+      padding: 0px 10px
+      line-height: 18px
+      color: #333 !important
+      span
+        font-size: 13px
+    &:hover
+      &:before
+        transform: rotate(20deg)
+
+  .icons
+    display: flex
+    align-items: center
+    margin-left: 20px
+    .fab
+      align-items: center
+      font-size: 30px
+      margin: 0px 5px
+      color: $color_red
+      &:hover
+        transform: rotate(20deg)
+      
+.banner
+  padding: 30px 0px
+  box-shadow: 0px 5px 6px rgba(black, .2)
+
+.about
+  padding: 50px 0px
+  overflow: hidden
+  &__title
+    img
+      max-height: 40px
+  &__text
+    padding: 10px 10px 30px 10px
+    max-width: 700px
+    border-bottom: solid 1px #777
+  &__img
+    position: relative
+    max-height: 230px
+    &:before
+      content: ''
+      background-image: url(/imgs/food-1.png)
+      background-size: 100% 100%
+      display: block
+      width: 200px
+      height: 200px
+      position: relative
+      margin-left: 50%
+    &:after
+      content: ''
+      background-image: url(/imgs/food-2.png)
+      background-size: 100% 100%
+      display: block
+      width: 100px
+      height: 100px
+      position: relative
+      bottom: 0px
+      margin-left: 30%
+  &:hover
+    .about__img
+      &:before
+        transform: scale(1.05)
+      &:after
+        transform: translateX(-10px) rotate(10deg)
+
+.menu
+  background-image: url(/imgs/m-bg.png)
+  background-size: 100% auto
+  background-attachment: fixed
+  color: white
+  padding: 60px 0px
+  &__title
+    text-align: center
+    img
+      height: 55px
+  &__cards
+  &__card
+    text-align: center
+    border-radius: 10px
+    background: rgba(white,.15)
+    box-shadow: 0px 0px 10px rgba(black,.7)
+    margin: 20px 0px
+    &-title
+      padding: 15px 0px
+      border-bottom: dashed 2px rgba(255,255,255,.3)
+      display: flex
+      justify-content: center
+      align-items: center
+      &:before
+        content: ''
+        background-image: url(/imgs/t-icon-01.png)
+        width: 35px
+        height: 35px
+        background-size: 100% auto
+        margin: 5px
+      &[data-title="2"]:before
+        background-image: url(/imgs/t-icon-02.png)
+      &[data-title="3"]:before
+        background-image: url(/imgs/t-icon-05.png)
+      &[data-title="4"]:before
+        background-image: url(/imgs/t-icon-06.png)
+      &[data-title="5"]:before
+        background-image: url(/imgs/t-icon-04.png)
+      &[data-title="6"]:before
+        background-image: url(/imgs/t-icon-07.png)
+      &[data-title="7"]:before
+        background-image: url(/imgs/t-icon-03.png)
+    &-dish
+      padding: 15px 5px
+      list-style: none
+      line-height: 30px
+    &:hover
+      transform: scale(1.05)
+      .menu__card-title
+        &:before
+          transform: rotate(20deg)
+      
+
+.coupon
+  padding: 50px 0px
+  background-image: url(/imgs/red-bg.png)
+  box-shadow: 0px 5px 6px rgba(black, .4)
+  &__title
+    text-align: center
+    img
+      height: 40px
+  &__card
+    border: solid 4px white
+    margin: 20px 0px
+    padding: 7px
+    &-img
+      max-height: 180px
+      overflow: hidden
+      img
+        width: 100%
+    &-text
+      background: rgba(white,.95)
+      text-align: center
+      padding: 20px 10px
+      height: 100%
+    &-title
+      font-size: 22px
+      font-weight: 900
+      &:after
+        content: ''
+        display: block
+        position: relative
+        height: 20px
+        background-image: url(/imgs/line.png)
+        background-repeat: no-repeat
+        background-position-x: center
+    &-items
+      list-style: none
+      padding: 0px
+      text-align: center
+    &-price
+      line-height: 20px
+      color: $color_red
+    &-expird
+      border: solid 1px $color_red
+      font-size: 15px
+      font-weight: 900
+      padding: 3px
+      max-width: 220px
+      border-radius: 50px
+      margin: auto
+      margin-top: 25px
+    &:hover
+      box-shadow: 0px 0px 10px rgba(black, .5)
+      transform: translateY(-15px)
+.booking
+  padding: 50px 0px
+  &__title
+    img
+      max-height: 50px
+  &__form
+    max-width: 800px
+    margin: auto
+    input,select,textarea
+      border: solid 1px rgba($color_red,.6)
+    input:focus,select:focus,textarea:focus
+      outline: none
+      border: solid 1px $color_red
+      box-shadow: 0px 0px 7px rgba($color_red,.3)
+  &-btn
+    background: $color_red
+    outline: none
+    border: none
+    color: white
+    padding: 5px
+    width: 200px
+    border-radius: 5px
+    position: relative
+    left: 50%
+    font-size: 20px
+    transform: translateX(-50%)
+    &:hover
+      opacity: .6
+
+.fqa
+  padding: 50px 10px
+  &__title
+    text-align: center
+    img
+      height: 45px
+  &__lists
+    background: rgba(white,.8)
+    padding: 20px 10px
+    border-radius: 8px
+    box-shadow: 0px 0px 10px rgba(black,.2)
+  &__list
+    padding: 10px 5px
+    &-head
+      font-size: 20px
+      font-weight: 900
+      position: relative
+      padding-left: 35px
+      padding-bottom: 5px
+      border-bottom: dashed 1px $color-red
+      cursor: pointer
+      &:before
+        content: ''
+        display: block
+        background-image: url(/imgs/icon-04.png)
+        background-size: 100% auto
+        width: 30px
+        height: 30px
+        left: 0px
+        position: absolute
+    &-text
+      padding: 10px
+      padding-left: 35px
+      border-radius: 10px
+
+
+.footer
+  background: black
+  padding: 50px 0px
+  color: white
+  position: relative
+  text-align: center
+  i
+    font-size: 40px
+  &__search
+    input
+      font-size: 22px
+      padding: 5px
+      border-radius: 5px
+      outline: none
+      border: none
+  &:before
+    content: ''
+    position: absolute
+    width: 100%
+    left: 0px
+    height: 18px
+    top: -17px
+    color: red
+    background-image: url(/imgs/h-bg.png)
+    background-size: 1000px auto
+    transform: rotate(180deg)
+  &-img
+    max-width: 300px
+  &__delivery
+    img
+      width: 120px
+      height: 120px
+      margin: 5px
+    &-time
+      font-size: 18px
+      margin: 0px 20px 
+
+.side-menu
+  position: fixed
+  right: 0px
+  z-index: 999
+  top: 200px
+  &__items
+    list-style: none
+    .nav-item
+      position: relative
+      display: flex
+      align-items: center
+      border-bottom: solid 3px $color_red
+      padding-left: 10px
+      transform: translateX(90px)
+      background: rgba(255,255,255,.3)
+      box-shadow: 0px 0px 10px rgba(black,.2)
+      border-radius: 10px 0px 0px 10px
+      .nav-link
+        line-height: 18px
+        font-size: 15px
+        text-shadow: 0px 0px 8px  rgba(white,1)
+      &:before
+        content: ''
+        background-size: 100% auto
+        width: 30px
+        height: 30px
+        position: relative
+      &[data-icon="1"]:before
+        background-image: url(/imgs/icon-01.png)
+      &[data-icon="2"]:before
+        background-image: url(/imgs/icon-02.png)
+      &[data-icon="3"]:before
+        background-image: url(/imgs/icon-03.png)
+      &[data-icon="4"]:before
+        background-image: url(/imgs/icon-04.png)
+      &[data-icon="5"]:before
+        background-image: url(/imgs/icon-05.png)
+      &[data-icon="6"]:before
+        background-image: url(/imgs/icon-06.png)
+      &:hover
+        &:before
+          transform: rotate(20deg)
+      &:hover
+        transform: translateX(10px)
+
+
+  
+@media (min-width: 991px)
+  .fa-bars
+    display: none
+    z-index: 999
+
+@media (max-width: 1310px)
+  .menu
+    background-size: auto 100%
+@media (max-width: 1200px)
+  .coupon
+    background-size: auto 100%
+    
+@media (max-width: 991px)
+  section.logo
+    position: sticky !important
+    top: 0px
+    z-index: 998
+  header
+    .nav-item:last-child,.icons:last-child
+      border-bottom: none
+    .nav-item,.icons
+      border-bottom: dashed 1px $color_red
+      padding: 10px 0px
+      padding-left: 20px
+      .nav-link
+        width: 120px
+      &:after
+        border-right: none
+        width: 100%
+    .icons
+      display: flex
+      margin: 0px
+      padding: 10px 0px
+      padding-top: 20px
+      justify-content: center
+  .banner
+    padding: 5px 0px 15px 0px
+  .side-menu
+    display: none
+
