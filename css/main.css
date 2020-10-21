@@ -24,7 +24,9 @@ html a:hover, body a:hover {
 
 .top-wrap {
   background-image: url(/imgs/t-bg.png);
-  background-size: 100% auto;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 .logo {
@@ -201,7 +203,7 @@ header .icons .fab:hover {
   width: 100px;
   height: 100px;
   position: relative;
-  bottom: 0px;
+  bottom: 20px;
   margin-left: 30%;
 }
 
