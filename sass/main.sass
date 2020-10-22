@@ -15,6 +15,8 @@ html,body
   a:hover
     color: black
     text-decoration: none
+  .red
+    color: #8b0000
 
 .top-wrap
   background-image: url(/imgs/t-bg.png)
@@ -257,10 +259,12 @@ header
     margin: auto
     input,select,textarea
       border: solid 1px rgba($color_red,.6)
+      background: rgba(255,255,255,.4)
     input:focus,select:focus,textarea:focus
       outline: none
       border: solid 1px $color_red
       box-shadow: 0px 0px 7px rgba($color_red,.3)
+      background: rgba(255,255,255,.4)
   &-btn
     background: $color_red
     outline: none
@@ -423,13 +427,41 @@ header
         background-size: auto 25%
         background-position-x: center
   &-content
+    .sold-out
+      opacity: .4
+    .fas:hover,.far:hover
+      opacity: .4
+    input,select,textarea
+      border: solid 1px rgba($color_red,.6)
+      background: rgba(255,255,255,.4)
+      border-radius: 5px
+      margin: 5px 0px
+      width: 100%
+      padding: 0px 5px
+    input:focus,select:focus,textarea:focus
+      background: rgba(255,255,255,.4)
+      outline: none
+      border: solid 1px $color_red
+      box-shadow: 0px 0px 7px rgba($color_red,.3)
+    .item-btn
+      display: block
+      color: white
+      background: $color_red
+      width: 100%
+      text-align: center
+      border-radius: 5px
+      margin-top: 5px
+      &:hover
+        opacity: .6
     &__form
       input,select,textarea
         border: solid 1px rgba($color_red,.6)
+        background: rgba(255,255,255,.4)
       input:focus,select:focus,textarea:focus
         outline: none
         border: solid 1px $color_red
         box-shadow: 0px 0px 7px rgba($color_red,.3)
+        background: rgba(255,255,255,.4)
       input[type="submit"]
         width: 100%
         color: white
@@ -439,27 +471,17 @@ header
         &:hover
           opacity: .6
     &__items
-      padding: 20px
+      padding: 20px 10px
       background: rgba(white,.3)
       border-radius: 10px
       box-shadow: 0px 0px 10px rgba(black,.2) 
     &__item
+      .dish
+        width: 80%
+      .price
+        width: 20%
       label
         margin: 5px 0px
-      input,select,textarea
-        border: solid 1px rgba($color_red,.6)
-        border-radius: 5px
-        margin: 5px 0px
-        width: 100%
-      input:focus,select:focus,textarea:focus
-        outline: none
-        border: solid 1px $color_red
-        box-shadow: 0px 0px 7px rgba($color_red,.3)
-      input[type="submit"]
-        color: white
-        background: $color_red
-        &:hover
-          opacity: .6
       border-bottom: dashed 1px $color_red
       padding: 20px 
     &__bookings
@@ -470,6 +492,17 @@ header
       border-radius: 10px
       box-shadow: 0px 0px 10px rgba(black,.2)
       margin-bottom: 20px
+      textarea
+        border: solid 1px rgba($color_red,.6)
+        background: rgba(255,255,255,.4)
+        border-radius: 5px
+        margin: 5px 0px
+        width: 100%
+      textarea:focus
+        background: rgba(255,255,255,.4)
+        outline: none
+        border: solid 1px $color_red
+        box-shadow: 0px 0px 7px rgba($color_red,.3)
       &-info
         padding: 5px 10px
       &-info.date
@@ -478,19 +511,19 @@ header
         padding: 8px
         font-weight: 900
       &-delete
-        margin-bottom: 10px
-        left: 50%
-        border: none
-        outline: none
-        background: $color_red
-        color: white
-        border-radius: 5px
-        padding: 3px 20px
         display: block
+        color: white
+        background: $color_red
+        width: 100%
+        text-align: center
+        border-radius: 5px
         margin: auto
+        margin-top: 5px
         margin-bottom: 15px
+        max-width: 100px
         &:hover
-          opacity: .7
+          color: white
+          opacity: .6
 
 
 

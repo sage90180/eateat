@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>吃吃燒烤</title>
-  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
   <script src="https://kit.fontawesome.com/4f39c4000d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/css/main.css">
@@ -232,25 +232,25 @@
       <div class="booking__title mb-4">
         <img src="/imgs/booking.png" alt="">
       </div>
-      <form class="text-left booking__form mt-5">
+      <form action="/order" method="POST" class="text-left booking__form mt-5">
         <div class="form-row">
           <div class="form-group col-md-6 px-3">
             <label for="name">姓 名</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" name="name" class="form-control" id="name">
           </div>
           <div class="form-group col-md-6 px-3">
             <label for="phone">手 機</label>
-            <input type="text" class="form-control" id="phone">
+            <input type="text" name="phone" class="form-control" id="phone">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6 px-3">
             <label for="people">人 數</label>
-            <input type="text" class="form-control" id="people">
+            <input type="text" name="people" class="form-control" id="people">
           </div>
           <div class="form-group col-md-6 px-3">
             <label for="time">時段</label>
-            <select id="time" class="form-control">
+            <select id="time" name="time" class="form-control">
               <option selected>Choose...</option>
               <option>...</option>
             </select>
@@ -259,7 +259,7 @@
         <div class="form-row">
           <div class="form-group col-md-6 px-3">
             <label for="time">預定餐點</label>
-            <select id="time" class="form-control">
+            <select id="time" name="order" class="form-control">
               <option selected>Choose...</option>
               <option>...</option>
             </select>
@@ -268,7 +268,7 @@
         <div class="form-row">
           <div class="form-group col-md-12 px-3">
             <label for="time">備註</label>
-            <textarea class="form-control" id="time" rows="3"></textarea>
+            <textarea name="content" class="form-control" id="time" rows="3"></textarea>
           </div>
         </div>
         <button type="submit" class="booking-btn mt-4">確認送出</button>

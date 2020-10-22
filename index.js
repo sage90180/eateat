@@ -6,6 +6,8 @@ const app = express()
 const port = process.env.PORT || 5001
 
 const userController = require('./controllers/user')
+const dishController = require('./controllers/dish')
+const typeController = require('./controllers/type')
 
 app.use(session({
   secret: 'keyboard cat',
@@ -16,6 +18,7 @@ app.use(session({
 app.set('view engine', 'ejs')
 app.use('/css', express.static('css'))
 app.use('/imgs', express.static('imgs'))
+app.use('/js', express.static('js'))
 // app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -32,8 +35,13 @@ function redirectBack(req, res) {
 
 app.get('/', userController.index)
 app.get('/login', userController.login)
-// app.get('/logout', userController.logout)
-// app.post('/login', userController.handleLogin, redirectBack)
+app.post('/login', userController.handleLogin, redirectBack)
+app.get('/logout', userController.logout)
+app.get('/admin', userController.admin)
+app.post('/add-dish', dishController.handleAdd, redirectBack)
+app.post('/add-type', typeController.handleAdd, redirectBack)
+app.get('/delete-type/:id', typeController.delete_type, redirectBack)
+app.get('/update-dish/:id', dishController.update_dish, redirectBack)
 // app.get('/register', userController.register)
 // app.post('/register', userController.handleRegister, redirectBack)
 
