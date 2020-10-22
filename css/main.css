@@ -647,6 +647,12 @@ header .icons .fab:hover {
   background-position-x: center;
 }
 
+.management-content .item-head {
+  font-weight: 900;
+  padding: 5px 0px;
+  font-size: 18px;
+}
+
 .management-content .sold-out {
   opacity: .4;
 }

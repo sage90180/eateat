@@ -1,6 +1,4 @@
 const db = require('../models')
-// const User = db.User
-// const Type = db.Type
 const Dish = db.Dish
 const dishController = {
   handleAdd: (req, res, next) => {
@@ -30,7 +28,7 @@ const dishController = {
       req.flash('errorMessage', '請填好，填滿！！')
       return next()
     }
-    Prize.findOne({
+    Dish.findOne({
       where:{
         id: req.params.id,
       }
@@ -41,6 +39,23 @@ const dishController = {
       })
     }).then(() => {
       return next()
+    }).catch(err=>{
+      req.flash('errorMessage', err.toString())
+      return next()
+    })
+  },
+  delete_dish: (req, res, next) => {
+    Dish.findOne({
+      where:{
+        id: req.params.id,
+      }
+    }).then( dishes =>{
+      dishes.update({
+        delete: '1'
+      })
+    }).then(()=>{
+      req.flash('errorMessage', '刪除成功！')
+      return res.redirect('/admin')
     }).catch(err=>{
       req.flash('errorMessage', err.toString())
       return next()

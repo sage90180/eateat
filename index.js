@@ -38,10 +38,13 @@ app.get('/login', userController.login)
 app.post('/login', userController.handleLogin, redirectBack)
 app.get('/logout', userController.logout)
 app.get('/admin', userController.admin)
-app.post('/add-dish', dishController.handleAdd, redirectBack)
+
 app.post('/add-type', typeController.handleAdd, redirectBack)
 app.get('/delete-type/:id', typeController.delete_type, redirectBack)
-app.get('/update-dish/:id', dishController.update_dish, redirectBack)
+
+app.post('/add-dish', dishController.handleAdd, redirectBack)
+app.post('/update-dish/:id', dishController.update_dish, redirectBack)
+app.get('/delete-dish/:id', dishController.delete_dish, redirectBack)
 // app.get('/register', userController.register)
 // app.post('/register', userController.handleRegister, redirectBack)
 

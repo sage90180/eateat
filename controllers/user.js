@@ -58,37 +58,6 @@ const userController = {
       })
     })
   },
-  // admin: (req, res) => {
-  //   Type.findAll({
-  //     include: Dish,
-  //     where:{
-  //       delete: null
-  //     }
-  //   }).then(categories => {
-  //     console.log(categories)
-  //     res.render('admin',{
-  //       categories
-  //     })
-  //   })
-  // }
-  // admin: (req, res) => {
-  //   Type.findAll({
-  //     raw: true,
-  //     where:{
-  //       delete: null
-  //     }
-  //   }).then( categories =>{
-  //     Dish.findAll({
-  //       raw: true,
-  //       where:{
-  //         delete: null
-  //       }
-  //     }).then( dishes =>{
-  //       console.log(dishes)
-  //       console.log(categories)
-  //     })
-  //   })
-  // }
   admin: (req, res) => {
     Type.findAll({
       raw: true,

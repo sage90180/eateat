@@ -27,16 +27,16 @@
   <div class="container">
     <ul class="nav management-btns justify-content-center">
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#menu">菜單</a>
+        <a class="nav-link active" data-toggle="tab" href="#menu">[ 菜單 ]</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#coupon">優惠卷</a>
+        <a class="nav-link" data-toggle="tab" href="#coupon">[ 優惠卷 ]</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#booking">預約</a>
+        <a class="nav-link" data-toggle="tab" href="#booking">[ 預約 ]</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#faq">問與答</a>
+        <a class="nav-link" data-toggle="tab" href="#faq">[ 問與答 ]</a>
       </li>
     </ul>
     <div class="err-message text-center red mb-3"><%= errorMessage %></div>
@@ -46,8 +46,8 @@
         <div class="row my-4">
           <div class="col-12 px-4">
             <div class="row management-content__items mb-3">
-              <div class="col-12 mb-2">
-                編輯類別：
+              <div class="col-12 mb-2 item-head px-md-5">
+                編輯類別
               </div>
               <form method="POST" action="/add-type" class="col-lg-4 col-md-6 px-md-5">
                 <input type="text" class="w-auto" name="type" placeholder="新 增...">
@@ -64,8 +64,8 @@
             <div class="row management-content__items">
               <% for(let category of categories){ %>
                 <div action="" method="" class="col-lg-4 col-md-6 management-content__item px-md-5">
-                  <div>類 別：<%= category.type %></div>
-                  <div for="">菜 色：</div>
+                  <div class="item-head">類 別：[ <%= category.type %> ]</div>
+                  <div>菜 色：</div>
                   <form method="POST" action="/add-dish" class="d-flex align-items-center">
                     <input type="hidden" value="<%= category.id %>" type="text" name="TypeId">
                     <input class="dish mr-1" value="" name="name" type="text" placeholder="新 增...">
@@ -74,20 +74,20 @@
                     <button type="submit" class="btn fas fa-plus p-0"></button>
                   </form>
                   <% for(let i = 0; i < dishes.length; i++) { %>
-                    <form method="/update-dish/<%= category.id %>" action="POST" class="d-flex align-items-center">
+                    <form method="POST" action="/update-dish/<%= dishes[i].id %>" class="d-flex align-items-center">
                       <% if(dishes[i].TypeId == category.id) { %>
-                      <input class="dish mr-1" value="<%= dishes[i].name %>" type="text">
+                      <input class="dish mr-1" name="name" value="<%= dishes[i].name %>" type="text">
                       $
-                      <input class="price ml-1" value="<%= dishes[i].price %>" type="text">
+                      <input class="price ml-1" name="price" value="<%= dishes[i].price %>" type="text">
                       <button type="submit" class="btn p-0 fas fa-edit ml-2"></button>
-                      <a href="" class="far fa-trash-alt ml-2"></a>
+                      <a href="/delete-dish/<%= dishes[i].id %>" class="far fa-trash-alt ml-2"></a>
                       <% } %>
                     </form>
                   <% } %>
-                  <div class="text-center">
+                  <!-- <div class="text-center">
                     <input class="w-auto mr-2" name="sell" value=true type="checkbox">
                     <label for="sell">完 售</label>
-                  </div>
+                  </div> -->
                   <div class="d-flex">
                     <a href="/delete-type/<%= category.id %>" class="item-btn" >移 除 菜 單</a>
                   </div>

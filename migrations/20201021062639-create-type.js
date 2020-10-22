@@ -11,7 +11,7 @@ module.exports = {
       type: {
         type: Sequelize.STRING
       },
-      sell: {
+      icon: {
         type: Sequelize.STRING
       },
       delete: {

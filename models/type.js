@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Type.init({
     type: DataTypes.STRING,
-    sell: DataTypes.STRING,
+    icon: DataTypes.STRING,
     delete: DataTypes.STRING
   }, {
     sequelize,
