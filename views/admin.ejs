@@ -49,15 +49,31 @@
               <div class="col-12 mb-2 item-head px-md-5">
                 編輯類別
               </div>
-              <form method="POST" action="/add-type" class="col-lg-4 col-md-6 px-md-5">
-                <input type="text" class="w-auto" name="type" placeholder="新 增...">
-                <button type="submit" class="btn fas fa-plus ml-2"></button>
+              <form method="POST" action="/add-type" class="col-lg-4 col-md-6 px-md-5 mb-2">
+                <div class="item-icon">
+                  <img src="/imgs/t-icon-02.png" alt=""><br>
+                </div>
+                <input type="text" name="img" placeholder="圖片網址...">
+                <div class="d-flex align-items-center">
+                  <input type="text" class="w-100" name="type" placeholder="新 增...">
+                <button type="submit" class="btn fas fa-plus ml-2 p-0"></button>
+                </div>
               </form>
               <% for(let category of categories){ %>
-                <div class="col-lg-4 col-md-6 px-md-5">
-                  <input type="text" class="w-auto" value="<%= category.type %>">
-                  <a href="<%= category.id %>" class="fas fa-edit ml-2"></a>
-                  <a href="/delete-type/<%= category.id %>" class="far fa-trash-alt  ml-2"></a>
+                <div class="col-lg-4 col-md-6 px-md-5 mb-4">
+                  <div class="item-icon">
+                    <img src="<%= category.icon %>" alt=""><br>
+                  </div>
+                  <form action="" class="d-flex align-items-center">
+                    <input type="text" class="w-100" value="">
+                    <a href="<%= category.id %>" class="fas fa-edit ml-2"></a>
+                  </form>
+                  <form action="" class="d-flex align-items-center">
+                    <input type="text" class="w-100" value="<%= category.type %>">
+                    <a href="<%= category.id %>" class="fas fa-edit ml-2"></a>
+                    <a href="/delete-type/<%= category.id %>" class="far fa-trash-alt  ml-2"></a>
+                  </form>
+
                 </div>
               <% } %>
             </div>
