@@ -47,13 +47,14 @@
           <div class="col-12 px-4">
             <div class="row management-content__items mb-3">
               <div class="col-12 mb-2 item-head px-md-5">
-                編輯類別
+                管理菜單
               </div>
+              <!-- 新增類別 -->
               <form method="POST" action="/add-type" class="col-lg-4 col-md-6 px-md-5 mb-2">
                 <div class="item-icon">
-                  <img src="/imgs/t-icon-02.png" alt=""><br>
+                  <img src="/imgs/t-icon-03.png" alt=""><br>
                 </div>
-                <input type="text" name="img" placeholder="圖片網址...">
+                <input type="text" name="icon" placeholder="圖片網址...">
                 <div class="d-flex align-items-center">
                   <input type="text" class="w-100" name="type" placeholder="新 增...">
                 <button type="submit" class="btn fas fa-plus ml-2 p-0"></button>
@@ -64,13 +65,15 @@
                   <div class="item-icon">
                     <img src="<%= category.icon %>" alt=""><br>
                   </div>
-                  <form action="" class="d-flex align-items-center">
-                    <input type="text" class="w-100" value="">
-                    <a href="<%= category.id %>" class="fas fa-edit ml-2"></a>
+                  <!-- 修改圖片 -->
+                  <form action="/update-icon/<%= category.id %>" method="POST" class="d-flex align-items-center">
+                    <input type="text" class="w-100" name="icon" value="<%= category.icon %>">
+                    <button class="btn p-0 fas fa-edit ml-2"></button>
                   </form>
-                  <form action="" class="d-flex align-items-center">
-                    <input type="text" class="w-100" value="<%= category.type %>">
-                    <a href="<%= category.id %>" class="fas fa-edit ml-2"></a>
+                  <!-- 修改分類 -->
+                  <form action="/update-type/<%= category.id %>" method="POST" class="d-flex align-items-center">
+                    <input type="text" class="w-100" name="type" value="<%= category.type %>">
+                    <button class="btn p-0 fas fa-edit ml-2"></button>
                     <a href="/delete-type/<%= category.id %>" class="far fa-trash-alt  ml-2"></a>
                   </form>
 

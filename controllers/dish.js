@@ -38,7 +38,8 @@ const dishController = {
         price,
       })
     }).then(() => {
-      return next()
+      req.flash('errorMessage', '修改成功！')
+      return res.redirect('/admin')
     }).catch(err=>{
       req.flash('errorMessage', err.toString())
       return next()

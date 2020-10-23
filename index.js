@@ -41,6 +41,8 @@ app.get('/admin', userController.admin)
 
 app.post('/add-type', typeController.handleAdd, redirectBack)
 app.get('/delete-type/:id', typeController.delete_type, redirectBack)
+app.post('/update-icon/:id', typeController.update_icon, redirectBack)
+app.post('/update-type/:id', typeController.update_type, redirectBack)
 
 app.post('/add-dish', dishController.handleAdd, redirectBack)
 app.post('/update-dish/:id', dishController.update_dish, redirectBack)
