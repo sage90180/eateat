@@ -1,3 +1,10 @@
+<% 
+  function getDate(date) {
+    // const dateArr = date.toString().split(" ")
+    return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+  }
+%> 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +20,7 @@
 
 <body>
   <section class="logo" id="logo">
-    <a href="" class="w-100 align-items-center"><img src="/imgs/logo.png" alt=""></a>
+    <a href="/" class="w-100 align-items-center"><img src="/imgs/logo.png" alt=""></a>
     <a class="fas fa-bars" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"></a>
   </section>
   <!-- management -->
@@ -42,12 +49,12 @@
     <div class="err-message text-center red mb-3"><%= errorMessage %></div>
     <div class="tab-content management-content">
       <!-- menu -->
-      <div class="tab-pane fade show active" id="menu">
+      <div class="tab-pane fade" id="menu">
         <div class="row my-4">
           <div class="col-12 px-4">
             <div class="row management-content__items mb-3">
               <div class="col-12 mb-2 item-head px-md-5">
-                管理菜單
+                新增分類
               </div>
               <!-- 新增類別 -->
               <form method="POST" action="/add-type" class="col-lg-4 col-md-6 px-md-5 mb-2">
@@ -57,98 +64,110 @@
                 <input type="text" name="icon" placeholder="圖片網址...">
                 <div class="d-flex align-items-center">
                   <input type="text" class="w-100" name="type" placeholder="新 增...">
-                <button type="submit" class="btn fas fa-plus ml-2 p-0"></button>
+                  <button type="submit" class="btn fas fa-plus ml-2 p-0"></button>
                 </div>
               </form>
-              <% for(let category of categories){ %>
-                <div class="col-lg-4 col-md-6 px-md-5 mb-4">
-                  <div class="item-icon">
-                    <img src="<%= category.icon %>" alt=""><br>
-                  </div>
-                  <!-- 修改圖片 -->
-                  <form action="/update-icon/<%= category.id %>" method="POST" class="d-flex align-items-center">
-                    <input type="text" class="w-100" name="icon" value="<%= category.icon %>">
-                    <button class="btn p-0 fas fa-edit ml-2"></button>
-                  </form>
-                  <!-- 修改分類 -->
-                  <form action="/update-type/<%= category.id %>" method="POST" class="d-flex align-items-center">
-                    <input type="text" class="w-100" name="type" value="<%= category.type %>">
-                    <button class="btn p-0 fas fa-edit ml-2"></button>
-                    <a href="/delete-type/<%= category.id %>" class="far fa-trash-alt  ml-2"></a>
-                  </form>
-
+              <% for(let type of types){ %>
+              <div class="col-lg-4 col-md-6 px-md-5 mb-4">
+                <div class="item-icon">
+                  <img src="<%= type.icon %>" alt=""><br>
                 </div>
+                <!-- 修改分類 -->
+                <form action="/update-type/<%= type.id %>" method="POST">
+                  <div class="d-flex align-items-center">
+                    <input type="text" class="w-100" name="icon" value="<%= type.icon %>">
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <input type="text" class="w-100" name="type" value="<%= type.type %>">
+                    <button class="btn p-0 fas fa-edit ml-2"></button>
+                    <a href="/delete-type/<%= type.id %>" class="far fa-trash-alt  ml-2"></a>
+                  </div>
+                </form>
+
+              </div>
               <% } %>
             </div>
             <div class="row management-content__items">
-              <% for(let category of categories){ %>
-                <div action="" method="" class="col-lg-4 col-md-6 management-content__item px-md-5">
-                  <div class="item-head">類 別：[ <%= category.type %> ]</div>
-                  <div>菜 色：</div>
-                  <form method="POST" action="/add-dish" class="d-flex align-items-center">
-                    <input type="hidden" value="<%= category.id %>" type="text" name="TypeId">
-                    <input class="dish mr-1" value="" name="name" type="text" placeholder="新 增...">
-                    $
-                    <input class="price mx-1" name="price" value="" type="text">
-                    <button type="submit" class="btn fas fa-plus p-0"></button>
-                  </form>
-                  <% for(let i = 0; i < dishes.length; i++) { %>
-                    <form method="POST" action="/update-dish/<%= dishes[i].id %>" class="d-flex align-items-center">
-                      <% if(dishes[i].TypeId == category.id) { %>
-                      <input class="dish mr-1" name="name" value="<%= dishes[i].name %>" type="text">
-                      $
-                      <input class="price ml-1" name="price" value="<%= dishes[i].price %>" type="text">
-                      <button type="submit" class="btn p-0 fas fa-edit ml-2"></button>
-                      <a href="/delete-dish/<%= dishes[i].id %>" class="far fa-trash-alt ml-2"></a>
-                      <% } %>
-                    </form>
+              <% for(let type of types){ %>
+              <div class="col-lg-4 col-md-6 management-content__item px-md-5">
+                <div class="item-head">類 別：[ <%= type.type %> ]</div>
+                <div>新增菜色：</div>
+                <!-- 新增菜色 -->
+                <form method="POST" action="/add-dish" class="d-flex align-items-center">
+                  <input type="hidden" value="<%= type.id %>" type="text" name="TypeId">
+                  <input class="dish mr-1" value="" name="name" type="text" placeholder="新 增...">
+                  $
+                  <input class="price mx-1" name="price" value="" type="text">
+                  <button type="submit" class="btn fas fa-plus p-0"></button>
+                </form>
+                <div>菜 色：</div>
+                <% for(let i = 0; i < dishes.length; i++) { %>
+                <!-- 顯示菜色 -->
+                <form method="POST" action="/update-dish/<%= dishes[i].id %>" class="d-flex align-items-center">
+                  <% if(dishes[i].TypeId == type.id) { %>
+                  <input class="dish mr-1" name="name" value="<%= dishes[i].name %>" type="text">
+                  $
+                  <input class="price ml-1" name="price" value="<%= dishes[i].price %>" type="text">
+                  <button type="submit" class="btn p-0 fas fa-edit ml-2"></button>
+                  <a href="/delete-dish/<%= dishes[i].id %>" class="far fa-trash-alt ml-2"></a>
                   <% } %>
-                  <!-- <div class="text-center">
-                    <input class="w-auto mr-2" name="sell" value=true type="checkbox">
-                    <label for="sell">完 售</label>
-                  </div> -->
-                  <div class="d-flex">
-                    <a href="/delete-type/<%= category.id %>" class="item-btn" >移 除 菜 單</a>
-                  </div>
-                </div>
+                </form>
                 <% } %>
+                <div class="d-flex">
+                  <a href="/delete-type/<%= type.id %>" class="item-btn">移 除 菜 單</a>
+                </div>
+              </div>
+              <% } %>
             </div>
           </div>
         </div>
       </div>
       <!-- coupon -->
-      <div class="tab-pane fade" id="coupon">
+      <div class="tab-pane fade show active" id="coupon">
         <div class="row my-4">
           <div class="col-md-3 col-12 mb-5">
-            <form method="POST" action="" class="management-content__form">
+            <form method="POST" action="/add-coupon" class="management-content__form">
               <div class="form-group">
-                <label for="name">優惠卷名稱</label>
-                <input type="text" class="form-control" id="name">
+                <label>優惠卷名稱：</label>
+                <input type="text" class="form-control" name="name">
               </div>
               <div class="form-group">
-                <label for="people">售 價</label>
-                <input type="text" class="form-control" id="people">
+                <label>圖 片：</label>
+                <input type="text" class="form-control" name="img">
               </div>
               <div class="form-group">
-                <label for="people">描 述</label>
-                <textarea class="form-control" id="time" rows="3"></textarea>
+                <label>售 價：</label>
+                <input type="text" class="form-control" name="price">
+              </div>
+              <div class="form-group">
+                <label>到期日：</label>
+                <input type="date" class="form-control" name="expire">
+              </div>
+              <div class="form-group">
+                <label">描 述：</label>
+                <textarea class="form-control" name="content" rows="3"></textarea>
               </div>
               <input type="submit" value="新增優惠卷">
             </form>
           </div>
           <div class="col-md-9 col-12 px-4">
             <div class="row management-content__items">
-              <div class="col-lg-4 col-md-6 management-content__item">
-                <div>優惠卷名稱<br><input type="text"></div>
-                <div>售 價<br><input type="text"></div>
-                <div>描 述<br>
-                  <textarea class="form-control" id="time" rows="3"></textarea>
+              <% for(let coupon of coupons){ %>
+              <form method="POST" action="/update-coupon/<%= coupon.id %>" class="col-lg-4 col-md-6 management-content__item">
+                <img class="w-100" src="<%= coupon.img %>" alt="">
+                <div>優惠卷名稱：<br><input type="text" name="name" value="<%= coupon.name %>"></div>
+                <div>圖 片：<br><input type="text" name="img" value="<%= coupon.img %>"></div>
+                <div>售 價：<br><input type="text" name="price" value="<%= coupon.price %>"></div>
+                <div>到期日：<br><input type="date" name="expire" value="<%= getDate(coupon.expire) %>"></div>
+                <div>描 述：<br>
+                  <textarea class="form-control" id="time" name="content" rows="3"><%= coupon.content %></textarea>
                 </div>
                 <div class="d-flex">
-                  <a href="" class="item-btn mr-1">修 改</a>
-                  <a href="" class="item-btn" >刪 除</a>
+                  <button type="submit" class="item-btn mr-1" style="border: none">修 改</button>
+                  <a href="/delete-coupon/<%= coupon.id %>" class="item-btn">刪 除</a>
                 </div>
-              </div>
+              </form>
+              <% } %>
             </div>
           </div>
         </div>
@@ -199,7 +218,7 @@
                 </div>
                 <div class="d-flex">
                   <a href="" class="item-btn mr-1">修 改</a>
-                  <a href="" class="item-btn" >刪 除</a>
+                  <a href="" class="item-btn">刪 除</a>
                 </div>
               </div>
             </div>
@@ -211,7 +230,7 @@
 
 
 
-  
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
   </script>
@@ -221,7 +240,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
   </script>
-  <script src="/js/main.js"></script>
+  <!-- <script src="/js/main.js"></script> -->
 </body>
 
 </html>

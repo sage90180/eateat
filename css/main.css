@@ -647,6 +647,10 @@ header .icons .fab:hover {
   background-position-x: center;
 }
 
+.management-content label {
+  margin-bottom: 0px;
+}
+
 .management-content .item-icon {
   background: black;
   width: 50px;

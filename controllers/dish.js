@@ -1,66 +1,67 @@
 const db = require('../models')
 const Dish = db.Dish
 const dishController = {
-  handleAdd: (req, res, next) => {
-    const {TypeId} = req.body
-    const {name} = req.body
-    const {price} = req.body
-    if(!TypeId || !name || !price ){
-      req.flash('errorMessage', '請填好，填滿！！')
-      return next()
-    }
-    Dish.create({
-      TypeId,
-      name,
-      price,
-    }).then(()=>{
-      req.flash('errorMessage', '新增成功！')
-      return res.redirect('/admin')
-    }).catch(err=>{
-      req.flash('errorMessage', err.toString())
-      return next()
-    })
-  },
-  updateDish: (req, res, next) => {
-    const {name} = req.body
-    const {price} = req.body
-    if(!name || !price){
-      req.flash('errorMessage', '請填好，填滿！！')
-      return next()
-    }
-    Dish.findOne({
-      where:{
-        id: req.params.id,
+  handleAdd: async (req, res, next) => {
+    try {
+      const {TypeId} = req.body
+      const {name} = req.body
+      const {price} = req.body
+      if(!TypeId || !name || !price ){
+        req.flash('errorMessage', '請填好，填滿！！')
+        return next()
       }
-    }).then(dishes => {
-      return dishes.update({
+      await Dish.create({
+        TypeId,
         name,
         price,
       })
-    }).then(() => {
+      req.flash('errorMessage', '新增成功！')
+      return res.redirect('/admin')
+    } catch (err) {
+      req.flash('errorMessage', err.toString())
+      return next()
+    }
+  },
+  updateDish: async (req, res, next) => {
+    try {
+      const {name} = req.body
+      const {price} = req.body
+      if(!name || !price){
+        req.flash('errorMessage', '請填好，填滿！！')
+        return next()
+      }
+      const dishes = await Dish.findOne({
+        where:{
+          id: req.params.id,
+        }
+      })
+      await dishes.update({
+        name,
+        price,
+      })
       req.flash('errorMessage', '修改成功！')
       return res.redirect('/admin')
-    }).catch(err=>{
+    } catch (err) {
       req.flash('errorMessage', err.toString())
       return next()
-    })
+    }
   },
-  deleteDish: (req, res, next) => {
-    Dish.findOne({
-      where:{
-        id: req.params.id,
-      }
-    }).then( dishes =>{
-      dishes.update({
+  deleteDish: async (req, res, next) => {
+    try {
+      const dishes = await Dish.findOne({
+        where:{
+          id: req.params.id,
+        }
+      })
+      await dishes.update({
         delete: '1'
       })
-    }).then(()=>{
       req.flash('errorMessage', '刪除成功！')
       return res.redirect('/admin')
-    }).catch(err=>{
+    } catch (err) {
       req.flash('errorMessage', err.toString())
       return next()
-    })
+    }
   }
 }
 

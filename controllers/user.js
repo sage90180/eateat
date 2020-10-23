@@ -2,6 +2,7 @@ const db = require('../models')
 const User = db.User
 const Type = db.Type
 const Dish = db.Dish
+const Coupon = db.Coupon
 const userController = {
   login: (req, res) => {
     res.render('login')
@@ -13,21 +14,22 @@ const userController = {
     req.session.username = null
     res.redirect('/login')
   },
-  handleLogin: (req, res, next) => {
-    const {
-      username,
-      password
-    } = req.body
-    if (!username || !password) {
-      req.flash('errorMessage', '請填好，填滿！！')
-      return next()
-    }
-    User.findOne({
-      where:{
+  handleLogin: async (req, res, next) => {
+    try {
+      const {
         username,
         password
+      } = req.body
+      if (!username || !password) {
+        req.flash('errorMessage', '請填好，填滿！！')
+        return next()
       }
-    }).then((user)=>{
+      const user = await User.findOne({
+        where:{
+          username,
+          password
+        }
+      })
       if (!user) {
         req.flash('errorMessage', '帳號/密碼錯誤喔！')
         return next()
@@ -35,54 +37,40 @@ const userController = {
       req.session.username = user.username
       req.session.UserId = user.id
       res.render('admin')
-    }).catch(err=>{
+    } catch (err) {
       req.flash('errorMessage', err.toString())
       return next()
-    })
+    }
   },
-  admin: (req, res) => {
-    // const {username} = req.session
-    // if(!username){
-    //   req.flash('errorMessage', '請先登入。')
-    //   return res.render('login')
-    // }
-    Type.findAll({
-      include: Dish,
-      where:{
-        delete: null
-      }
-    }).then(categories => {
-      console.log(categories)
-      res.render('admin',{
-        categories
-      })
-    })
-  },
-  admin: (req, res) => {
-    Type.findAll({
+  admin: async (req, res, next) => {
+    try {
+      const types = await Type.findAll({
       raw: true,
       where:{
         delete: null
-      }
-    }).then( categories =>{
-      Dish.findAll({
+        }
+      })
+      const dishes = await Dish.findAll({
         raw: true,
         where:{
           delete: null
         }
-      }).then( dishes =>{
-        User.findAll({
-          raw: true,
-        }).then( users =>{
-          // console.log(dishes)
-          // console.log(categories)
-        res.render('admin',{
-          categories,
-          dishes
-        })
-        })
       })
-    })
+      const coupons = await Coupon.findAll({
+        raw: true,
+        where:{
+          delete: null
+        }
+      })
+      return res.render('admin',{
+        types,
+        dishes,
+        coupons
+      })
+    } catch (err) {
+      req.flash('errorMessage', err.toString())
+      return next()
+    }
   }
 }
 
