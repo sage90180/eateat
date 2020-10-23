@@ -21,7 +21,7 @@ const dishController = {
       return next()
     })
   },
-  update_dish: (req, res, next) => {
+  updateDish: (req, res, next) => {
     const {name} = req.body
     const {price} = req.body
     if(!name || !price){
@@ -45,7 +45,7 @@ const dishController = {
       return next()
     })
   },
-  delete_dish: (req, res, next) => {
+  deleteDish: (req, res, next) => {
     Dish.findOne({
       where:{
         id: req.params.id,

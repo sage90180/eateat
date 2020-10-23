@@ -40,13 +40,13 @@ app.get('/logout', userController.logout)
 app.get('/admin', userController.admin)
 
 app.post('/add-type', typeController.handleAdd, redirectBack)
-app.get('/delete-type/:id', typeController.delete_type, redirectBack)
-app.post('/update-icon/:id', typeController.update_icon, redirectBack)
-app.post('/update-type/:id', typeController.update_type, redirectBack)
+app.get('/delete-type/:id', typeController.deleteType, redirectBack)
+app.post('/update-icon/:id', typeController.updateIcon, redirectBack)
+app.post('/update-type/:id', typeController.updateType, redirectBack)
 
 app.post('/add-dish', dishController.handleAdd, redirectBack)
-app.post('/update-dish/:id', dishController.update_dish, redirectBack)
-app.get('/delete-dish/:id', dishController.delete_dish, redirectBack)
+app.post('/update-dish/:id', dishController.updateDish, redirectBack)
+app.get('/delete-dish/:id', dishController.deleteDish, redirectBack)
 // app.get('/register', userController.register)
 // app.post('/register', userController.handleRegister, redirectBack)
 

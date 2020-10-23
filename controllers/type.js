@@ -19,7 +19,7 @@ const typeController = {
       return next()
     })
   },
-  update_icon: (req, res, next) => {
+  updateIcon: (req, res, next) => {
     const {icon} = req.body
     if(!icon){
       req.flash('errorMessage', '請填好，填滿！！')
@@ -41,7 +41,7 @@ const typeController = {
       return next()
     })
   },
-  update_type: (req, res, next) => {
+  updateType: (req, res, next) => {
     const {type} = req.body
     if(!type){
       req.flash('errorMessage', '請填好，填滿！！')
@@ -63,7 +63,7 @@ const typeController = {
       return next()
     })
   },
-  delete_type: (req, res, next) => {
+  deleteType: (req, res, next) => {
     Type.findOne({
       where:{
         id: req.params.id,
