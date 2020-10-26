@@ -66,14 +66,14 @@ html button[type='submit'], body button[type='submit'] {
   content: '';
 }
 
-.fa-bars {
+.fa-bars, .fa-home {
   font-size: 30px;
   color: white;
   position: absolute;
   right: 20px;
 }
 
-.fa-bars:before {
+.fa-bars:before, .fa-home:before {
   color: white;
 }
 

@@ -9,9 +9,6 @@ const userController = {
   login: (req, res) => {
     res.render('login')
   },
-  // index: (req, res) => {
-  //   res.render('index')
-  // },
   logout: (req, res) => {
     req.session.username = null
     res.redirect('/login')
@@ -37,8 +34,7 @@ const userController = {
         return next()
       }
       req.session.username = user.username
-      req.session.UserId = user.id
-      res.render('admin')
+      return res.redirect('/admin')
     } catch (err) {
       req.flash('errorMessage', err.toString())
       return next()
@@ -91,6 +87,11 @@ const userController = {
   },
   admin: async (req, res, next) => {
     try {
+      const {username} = req.session
+      if(!username){
+        req.flash('errorMessage', '請先登入。')
+        return res.render('login')
+      }
       const types = await Type.findAll({
         raw: true,
         where: {

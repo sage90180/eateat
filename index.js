@@ -41,7 +41,6 @@ app.get('/login', userController.login)
 app.post('/login', userController.handleLogin, redirectBack)
 app.get('/logout', userController.logout)
 app.get('/admin', userController.admin)
-
 // 菜單-類別
 app.post('/add-type', typeController.handleAdd, redirectBack)
 app.get('/delete-type/:id', typeController.deleteType, redirectBack)
