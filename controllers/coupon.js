@@ -12,7 +12,7 @@ const couponController = {
         req.flash('errorMessage', '請填好，填滿！！')
         return next()
       }
-      const coupons = await Coupon.create({
+      await Coupon.create({
         img,
         name,
         content,

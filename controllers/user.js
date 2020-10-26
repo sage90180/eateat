@@ -2,6 +2,7 @@ const db = require('../models')
 const User = db.User
 const Type = db.Type
 const Dish = db.Dish
+const Booking = db.Booking
 const Coupon = db.Coupon
 const userController = {
   login: (req, res) => {
@@ -62,10 +63,17 @@ const userController = {
           delete: null
         }
       })
+      const bookings = await Booking.findAll({
+        raw: true,
+        where:{
+          delete: null
+        }
+      })
       return res.render('admin',{
         types,
         dishes,
-        coupons
+        coupons,
+        bookings
       })
     } catch (err) {
       req.flash('errorMessage', err.toString())

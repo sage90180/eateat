@@ -9,6 +9,7 @@ const userController = require('./controllers/user')
 const dishController = require('./controllers/dish')
 const typeController = require('./controllers/type')
 const couponController = require('./controllers/coupon')
+const bookingController = require('./controllers/booking')
 
 app.use(session({
   secret: 'keyboard cat',
@@ -52,6 +53,9 @@ app.post('/update-dish/:id', dishController.updateDish, redirectBack)
 app.post('/add-coupon', couponController.handleAdd, redirectBack)
 app.get('/delete-coupon/:id', couponController.deleteCoupon, redirectBack)
 app.post('/update-coupon/:id', couponController.updateCoupon, redirectBack)
+// 預約
+app.post('/booking', bookingController.handleBooking, redirectBack)
+app.get('/delete-booking/:id', bookingController.deleteBooking, redirectBack)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

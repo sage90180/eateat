@@ -1,3 +1,10 @@
+<% 
+  var today = new Date()
+  function getDate(date) {
+    return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+  }
+%> 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -232,43 +239,52 @@
       <div class="booking__title mb-4">
         <img src="/imgs/booking.png" alt="">
       </div>
-      <form class="text-left booking__form mt-5">
+      <div class="err-message text-center red"><%= errorMessage %></div>
+      <form method="POST" action="/booking" class="text-left booking__form mt-3">
         <div class="form-row">
           <div class="form-group col-md-6 px-3">
-            <label for="name">姓 名</label>
-            <input type="text" class="form-control" id="name">
+            <label>姓 名</label>
+            <input type="text" class="form-control" name="name">
           </div>
           <div class="form-group col-md-6 px-3">
-            <label for="phone">手 機</label>
-            <input type="text" class="form-control" id="phone">
+            <label>手 機</label>
+            <input type="text" class="form-control" name="phone">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6 px-3">
-            <label for="people">人 數</label>
-            <input type="text" class="form-control" id="people">
+            <label>日 期</label>
+            <input type="date" class="form-control" name="date" value="<%= getDate(today) %>">
           </div>
           <div class="form-group col-md-6 px-3">
-            <label for="time">時段</label>
-            <select id="time" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
+            <label>時段</label>
+            <select name="time" class="form-control">
+              <option selected>15:00-16:30</option>
+              <option>16:30-18:00</option>
+              <option>18:00-19:30</option>
+              <option>19:30-21:00</option>
+              <option>21:00-22:30</option>
             </select>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6 px-3">
-            <label for="time">預定餐點</label>
-            <select id="time" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
+            <label>人 數</label>
+            <input type="text" class="form-control" name="people">
+          </div>
+          <div class="form-group col-md-6 px-3">
+            <label>預定餐點</label>
+            <select name="meal" class="form-control">
+              <option selected>卷卷全餐</option>
+              <option>牛牛全餐</option>
+              <option>豆豆全餐</option>
             </select>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-12 px-3">
-            <label for="time">備註</label>
-            <textarea class="form-control" id="time" rows="3"></textarea>
+            <label>備註</label>
+            <textarea class="form-control" id="time" rows="3" name="content"></textarea>
           </div>
         </div>
         <button type="submit" class="booking-btn mt-4">確認送出</button>
@@ -428,3 +444,5 @@
 </body>
 
 </html>
+
+

@@ -9,7 +9,7 @@ const typeController = {
         req.flash('errorMessage', '請填好，填滿！！')
         return next()
       }
-      const types = await Type.create({
+      await Type.create({
         type,
         icon
       })

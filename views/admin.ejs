@@ -1,6 +1,5 @@
 <% 
   function getDate(date) {
-    // const dateArr = date.toString().split(" ")
     return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
   }
 %> 
@@ -123,7 +122,7 @@
         </div>
       </div>
       <!-- coupon -->
-      <div class="tab-pane fade show active" id="coupon">
+      <div class="tab-pane fade" id="coupon">
         <div class="row my-4">
           <div class="col-md-3 col-12 mb-5">
             <form method="POST" action="/add-coupon" class="management-content__form">
@@ -176,23 +175,25 @@
       <div class="tab-pane fade" id="booking">
         <div class="management-content__bookings">
           <div class="row mt-4">
+            <% for(let booking of bookings){ %>
             <div class="col-xl-3 col-md-4 col-sm-6 col-12 ">
               <div class="management-content__booking">
-                <div class="management-content__booking-info date">日期：<span>2020/02/20</span></div>
-                <div class="management-content__booking-info">時段：<span>15：00</span></div>
-                <div class="management-content__booking-info">姓名：<span>Sage</span></div>
-                <div class="management-content__booking-info">手機：<span>0909012333</span></div>
-                <div class="management-content__booking-info">人數：<span>2</span></div>
-                <div class="management-content__booking-info w-100">備註：<textarea class="w-100" rows="3"></textarea>
+                <div class="management-content__booking-info date">日期：<span><%= getDate(booking.date) %></span></div>
+                <div class="management-content__booking-info">時段：<span><%= booking.time %></span></div>
+                <div class="management-content__booking-info">姓名：<span><%= booking.name %></span></div>
+                <div class="management-content__booking-info">手機：<span><%= booking.phone %></span></div>
+                <div class="management-content__booking-info">人數：<span><%= booking.people %></span></div>
+                <div class="management-content__booking-info w-100">備註：<textarea class="w-100" rows="3"><%= booking.content %></textarea>
                 </div>
-                <a href="" class="management-content__booking-delete">刪 除</a>
+                <a href="/delete-booking/<%= booking.id %>" class="management-content__booking-delete">刪 除</a>
               </div>
             </div>
+            <% } %> 
           </div>
         </div>
       </div>
       <!-- faq -->
-      <div class="tab-pane fade" id="faq">
+      <div class="tab-pane fade show active" id="faq">
         <div class="row my-4">
           <div class="col-md-3 col-12 mb-5">
             <form method="POST" action="" class=" management-content__form">
@@ -204,7 +205,7 @@
                 <label for="people">回 答</label>
                 <textarea class="form-control" id="time" rows="5"></textarea>
               </div>
-              <input type="submit" value="新增優惠卷">
+              <input type="submit" value="新增問與答">
             </form>
           </div>
           <div class="col-md-9 col-12 px-4">
