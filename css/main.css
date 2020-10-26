@@ -26,6 +26,10 @@ html .red, body .red {
   color: #8b0000;
 }
 
+html button[type='submit'], body button[type='submit'] {
+  border: none;
+}
+
 .top-wrap {
   background-image: url(/imgs/t-bg.png);
   background-size: auto 100%;
@@ -260,37 +264,11 @@ header .icons .fab:hover {
           align-items: center;
 }
 
-.menu__card-title:before {
-  content: '';
-  background-image: url(/imgs/t-icon-01.png);
+.menu__card-title-icon {
   width: 35px;
   height: 35px;
   background-size: 100% auto;
   margin: 5px;
-}
-
-.menu__card-title[data-title="2"]:before {
-  background-image: url(/imgs/t-icon-02.png);
-}
-
-.menu__card-title[data-title="3"]:before {
-  background-image: url(/imgs/t-icon-05.png);
-}
-
-.menu__card-title[data-title="4"]:before {
-  background-image: url(/imgs/t-icon-06.png);
-}
-
-.menu__card-title[data-title="5"]:before {
-  background-image: url(/imgs/t-icon-04.png);
-}
-
-.menu__card-title[data-title="6"]:before {
-  background-image: url(/imgs/t-icon-07.png);
-}
-
-.menu__card-title[data-title="7"]:before {
-  background-image: url(/imgs/t-icon-03.png);
 }
 
 .menu__card-dish {
@@ -304,7 +282,7 @@ header .icons .fab:hover {
           transform: scale(1.05);
 }
 
-.menu__card:hover .menu__card-title:before {
+.menu__card:hover .menu__card-title-icon {
   -webkit-transform: rotate(20deg);
           transform: rotate(20deg);
 }
@@ -328,6 +306,7 @@ header .icons .fab:hover {
   border: solid 4px white;
   margin: 20px 0px;
   padding: 7px;
+  max-width: 300px;
 }
 
 .coupon__card-img {

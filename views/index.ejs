@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
   <script src="https://kit.fontawesome.com/4f39c4000d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/slider_style.css">
 </head>
 
 <body>
@@ -90,85 +91,21 @@
         <img src="/imgs/menu.png" alt="">
       </div>
       <div class="row menu__cards">
+      <% for(let type of types){ %>
         <div class="col-lg-3 col-sm-6 col-6 px-md-4">
           <div class="menu__card">
-            <div class="menu__card-title" data-title="1">禽</div>
+            <div class="menu__card-title">
+              <img class="menu__card-title-icon" data-title="1" src="<%= type.icon %>" alt="">[ <%= type.type %> ]</div>
             <ul class="menu__card-dish">
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>雞翅</li>
-            </ul>
+            <% for(let i = 0; i < dishes.length; i++) { %>
+              <% if(dishes[i].TypeId == type.id) { %>
+                <li><%= dishes[i].name %></li>
+              <% } %>
+            <% } %>
+          </ul>
           </div>
         </div>
-        <div class="col-lg-3 col-sm-6 col-6 px-md-4">
-          <div class=" menu__card">
-            <div class="menu__card-title" data-title="2">豬</div>
-            <ul class="menu__card-dish">
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>大蔥鴨</li>
-              <li>雞翅</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6 col-6 px-md-4">
-          <div class=" menu__card">
-            <div class="menu__card-title" data-title="3">牛</div>
-            <ul class="menu__card-dish">
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>雞翅</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6 col-6 px-md-4">
-          <div class=" menu__card">
-            <div class="menu__card-title" data-title="4">魚</div>
-            <ul class="menu__card-dish">
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>雞翅</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6 col-6 px-md-4">
-          <div class=" menu__card">
-            <div class="menu__card-title" data-title="5">蔬菜</div>
-            <ul class="menu__card-dish">
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>大蔥鴨</li>
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>大蔥鴨</li>
-              <li>雞翅</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6 col-6 px-md-4">
-          <div class=" menu__card">
-            <div class="menu__card-title" data-title="6">主食</div>
-            <ul class="menu__card-dish">
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>雞翅</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6 col-6 px-md-4">
-          <div class=" menu__card">
-            <div class="menu__card-title" data-title="7">其他</div>
-            <ul class="menu__card-dish">
-              <li>雞腿肉</li>
-              <li>大蔥鴨</li>
-              <li>雞翅</li>
-            </ul>
-          </div>
-        </div>
+      <% } %>
       </div>
     </div>
   </section>
@@ -178,59 +115,23 @@
       <div class="coupon__title mb-4">
         <img src="/imgs/coupon.png" alt="">
       </div>
-      <div class="row coupon__cards d-flex">
-        <div class="col-xl-4 col-sm-6 col-12 px-xl-4">
+      <section class="variable slider carousel-center text-center">
+        <% for(let coupon of coupons){ %>
           <div class="coupon__card">
             <div class="coupon__card-img">
               <img src="/imgs/food.jpg" alt="">
             </div>
             <div class="coupon__card-text">
-              <div class="coupon__card-title">肉肉卷</div>
+              <div class="coupon__card-title"><%= coupon.name %></div>
               <ul class="coupon__card-items">
-                <li>雞肉捲 x <span>2</span></li>
-                <li>牛肉捲 x <span>3</span></li>
-                <li>豬肉捲 x <span>4</span></li>
+                <li><%= coupon.content %></li>
               </ul>
-              <h2 class="coupon__card-price">$<span>299</span></h2>
-              <div class="coupon__card-expird">到期日期：2020/02/02</div>
+              <h2 class="coupon__card-price">$<span><%= coupon.price %></span></h2>
+              <div class="coupon__card-expird">到期日期：<%= getDate(coupon.expire) %></div>
             </div>
           </div>
-        </div>
-        <div class="col-xl-4 col-sm-6 col-12 px-xl-4">
-          <div class="coupon__card">
-            <div class="coupon__card-img">
-              <img src="/imgs/food3.jpg" alt="">
-            </div>
-            <div class="coupon__card-text">
-              <div class="coupon__card-title">豆豆卷</div>
-              <ul class="coupon__card-items">
-                <li>豆豆吃到飽</li>
-                <li>豆豆茶碗蒸</li>
-                <li>豆豆濃湯</li>
-              </ul>
-              <h2 class="coupon__card-price">$<span>299</span></h2>
-              <div class="coupon__card-expird">到期日期：2020/02/02</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-sm-6 col-12 px-xl-4">
-          <div class="coupon__card">
-            <div class="coupon__card-img">
-              <img src="/imgs/food2.jpg" alt="">
-            </div>
-            <div class="coupon__card-text">
-              <div class="coupon__card-title">肉肉卷</div>
-              <ul class="coupon__card-items">
-                <li>雞肉捲 x <span>2</span></li>
-                <li>牛肉捲 x <span>3</span></li>
-                <li>豬肉捲 x <span>4</span></li>
-              </ul>
-              <h2 class="coupon__card-price">$<span>299</span></h2>
-              <div class="coupon__card-expird">到期日期：2020/02/02</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <% } %>
+      </section>
     </div>
   </section>
   <!-- booking -->
@@ -301,70 +202,20 @@
         <img src="/imgs/faq.png" alt="">
       </div>
       <div class="row fqa__lists mb-5" id="faq">
+        <% for(let faq of faqs){ %>
         <div class="col-md-6 col-12">
           <div class="fqa__list">
-            <div class="fqa__list-head" id="qa-1" data-toggle="collapse" data-target="#q-1">
-              烤肉好吃嗎？
+            <div class="fqa__list-head" data-toggle="collapse" data-target="#q-<%= faq.id %>">
+              <%= faq.question %>
             </div>
-            <div id="q-1" class="collapse show" aria-labelledby="qa-1" data-parent="#faq">
+            <div id="q-<%= faq.id %>" class="collapse" data-parent="#faq">
               <div class="fqa__list-text">
-                同能記；前那比月一口得、絕園意，林這意金性太高們國必防？南呢足沒去路精樣可星小單禮……新點送活效適做期部重，科讀打司別大林好民他前，時以目了不聽心！不改高站現隊了心不不人企達水前之，超大回，難期片年藥理。我元東遊，仍業說車臺以唱源地坡一？
-              </div>
-            </div>
-          </div>
-          <div class="fqa__list">
-            <div class="fqa__list-head" id="qa-2" data-toggle="collapse" data-target="#q-2">
-              我最喜歡吃烤肉惹！
-            </div>
-            <div id="q-2" class="collapse" aria-labelledby="qa-2" data-parent="#faq">
-              <div class="fqa__list-text">
-                同能記；前那比月一口得、絕園意，林這意金性太高們國必防？南呢足沒去路精樣可星小單禮……新點送活效適做期部重，科讀打司別大林好民他前，時以目了不聽心！
-              </div>
-            </div>
-          </div>
-          <div class="fqa__list">
-            <div class="fqa__list-head" id="qa-3" data-toggle="collapse" data-target="#q-3">
-              烤肉串燒吃起來。
-            </div>
-            <div id="q-3" class="collapse" aria-labelledby="qa-3" data-parent="#faq">
-              <div class="fqa__list-text">
-                3
+                <%= faq.answer %>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-12">
-          <div class="fqa__list">
-            <div class="fqa__list-head" id="qa-4" data-toggle="collapse" data-target="#q-4">
-              炭火烤肉讚讚，推推。
-            </div>
-            <div id="q-4" class="collapse" aria-labelledby="qa-4" data-parent="#faq">
-              <div class="fqa__list-text">
-                4
-              </div>
-            </div>
-          </div>
-          <div class="fqa__list">
-            <div class="fqa__list-head" id="qa-5" data-toggle="collapse" data-target="#q-5">
-              串串吃起來。
-            </div>
-            <div id="q-5" class="collapse" aria-labelledby="qa-5" data-parent="#faq">
-              <div class="fqa__list-text">
-                5
-              </div>
-            </div>
-          </div>
-          <div class="fqa__list">
-            <div class="fqa__list-head" id="qa-6" data-toggle="collapse" data-target="#q-6">
-              沒事來烤肉。
-            </div>
-            <div id="q-6" class="collapse" aria-labelledby="qa-6" data-parent="#faq">
-              <div class="fqa__list-text">
-                6
-              </div>
-            </div>
-          </div>
-        </div>
+        <% } %>
       </div>
     </div>
   </section>
@@ -431,6 +282,10 @@
       </li>
     </ul>
   </div>
+  
+
+
+        
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -441,6 +296,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
   </script>
+
+  <script src='/js/slider_2.js'></script>
+  <script src='/js/slider_1.js'></script>
+    
 </body>
 
 </html>

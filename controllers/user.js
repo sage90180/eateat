@@ -4,13 +4,14 @@ const Type = db.Type
 const Dish = db.Dish
 const Booking = db.Booking
 const Coupon = db.Coupon
+const Faq = db.Faq
 const userController = {
   login: (req, res) => {
     res.render('login')
   },
-  index: (req, res) => {
-    res.render('index')
-  },
+  // index: (req, res) => {
+  //   res.render('index')
+  // },
   logout: (req, res) => {
     req.session.username = null
     res.redirect('/login')
@@ -26,7 +27,7 @@ const userController = {
         return next()
       }
       const user = await User.findOne({
-        where:{
+        where: {
           username,
           password
         }
@@ -43,37 +44,89 @@ const userController = {
       return next()
     }
   },
-  admin: async (req, res, next) => {
+  index: async (req, res, next) => {
     try {
       const types = await Type.findAll({
-      raw: true,
-      where:{
-        delete: null
+        raw: true,
+        where: {
+          delete: null
         }
       })
       const dishes = await Dish.findAll({
         raw: true,
-        where:{
+        where: {
           delete: null
         }
       })
       const coupons = await Coupon.findAll({
         raw: true,
-        where:{
+        where: {
           delete: null
         }
       })
       const bookings = await Booking.findAll({
         raw: true,
-        where:{
+        where: {
           delete: null
         }
       })
-      return res.render('admin',{
+      const faqs = await Faq.findAll({
+        raw: true,
+        where: {
+          delete: null
+        }
+      })
+      return res.render('index', {
         types,
         dishes,
         coupons,
-        bookings
+        bookings,
+        faqs
+      })
+      
+    } catch (err) {
+      req.flash('errorMessage', err.toString())
+      return next()
+    }
+  },
+  admin: async (req, res, next) => {
+    try {
+      const types = await Type.findAll({
+        raw: true,
+        where: {
+          delete: null
+        }
+      })
+      const dishes = await Dish.findAll({
+        raw: true,
+        where: {
+          delete: null
+        }
+      })
+      const coupons = await Coupon.findAll({
+        raw: true,
+        where: {
+          delete: null
+        }
+      })
+      const bookings = await Booking.findAll({
+        raw: true,
+        where: {
+          delete: null
+        }
+      })
+      const faqs = await Faq.findAll({
+        raw: true,
+        where: {
+          delete: null
+        }
+      })
+      return res.render('admin', {
+        types,
+        dishes,
+        coupons,
+        bookings,
+        faqs
       })
     } catch (err) {
       req.flash('errorMessage', err.toString())

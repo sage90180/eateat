@@ -17,7 +17,8 @@ html,body
     text-decoration: none
   .red
     color: #8b0000
-
+  button[type='submit']
+    border: none
 .top-wrap
   background-image: url(/imgs/t-bg.png)
   background-size: auto 100%
@@ -167,34 +168,19 @@ header
       display: flex
       justify-content: center
       align-items: center
-      &:before
-        content: ''
-        background-image: url(/imgs/t-icon-01.png)
+      &-icon
         width: 35px
         height: 35px
         background-size: 100% auto
         margin: 5px
-      &[data-title="2"]:before
-        background-image: url(/imgs/t-icon-02.png)
-      &[data-title="3"]:before
-        background-image: url(/imgs/t-icon-05.png)
-      &[data-title="4"]:before
-        background-image: url(/imgs/t-icon-06.png)
-      &[data-title="5"]:before
-        background-image: url(/imgs/t-icon-04.png)
-      &[data-title="6"]:before
-        background-image: url(/imgs/t-icon-07.png)
-      &[data-title="7"]:before
-        background-image: url(/imgs/t-icon-03.png)
     &-dish
       padding: 15px 5px
       list-style: none
       line-height: 30px
     &:hover
       transform: scale(1.05)
-      .menu__card-title
-        &:before
-          transform: rotate(20deg)
+      .menu__card-title-icon
+        transform: rotate(20deg)
       
 
 .coupon
@@ -209,6 +195,7 @@ header
     border: solid 4px white
     margin: 20px 0px
     padding: 7px
+    max-width: 300px
     &-img
       max-height: 180px
       overflow: hidden
