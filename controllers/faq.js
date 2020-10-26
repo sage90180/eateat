@@ -14,7 +14,7 @@ const faqController = {
         answer
       })
       req.flash('errorMessage', '新增成功！')
-      return res.redirect('/admin')
+      return res.redirect('/admin/#faq')
     } catch (err) {
       req.flash('errorMessage', err.toString())
       return next()

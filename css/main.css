@@ -344,6 +344,11 @@ header .icons .fab:hover {
   list-style: none;
   padding: 0px;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .coupon__card-price {
