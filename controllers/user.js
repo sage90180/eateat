@@ -1,10 +1,5 @@
 const db = require('../models')
-const User = db.User
-const Type = db.Type
-const Dish = db.Dish
-const Booking = db.Booking
-const Coupon = db.Coupon
-const Faq = db.Faq
+const { User, Type, Dish, Booking, Coupon, Faq } = db
 const userController = {
   login: (req, res) => {
     res.render('login')
@@ -70,7 +65,8 @@ const userController = {
         raw: true,
         where: {
           delete: null
-        }
+        },
+        order: ['order']
       })
       return res.render('index', {
         types,
@@ -114,13 +110,13 @@ const userController = {
         raw: true,
         where: {
           delete: null
-        }
+        },
       })
       const faqs = await Faq.findAll({
-        raw: true,
         where: {
           delete: null
-        }
+        },
+        order: ['order']
       })
       return res.render('admin', {
         types,

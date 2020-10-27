@@ -3,8 +3,7 @@ const Type = db.Type
 const typeController = {
   handleAdd: async (req, res, next) => {
     try {
-      const {type} = req.body
-      const {icon} = req.body
+      const {type, icon} = req.body
       if(!type || !icon){
         req.flash('errorMessage', '請填好，填滿！！')
         return next()
@@ -22,8 +21,7 @@ const typeController = {
   },
   updateType: async (req, res, next) => {
     try {
-      const {type} = req.body
-      const {icon} = req.body
+      const {type, icon} = req.body
       if(!type || !icon){
         req.flash('errorMessage', '請填好，填滿！！')
         return next()
@@ -45,6 +43,11 @@ const typeController = {
     }
   },
   deleteType: async (req, res, next) => {
+    const {username} = req.session
+    if(!username){
+      req.flash('errorMessage', '請先登入。')
+      return res.render('login')
+    }
     try {
       const types = await Type.findOne({
         where: {

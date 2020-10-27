@@ -17,6 +17,9 @@ module.exports = {
       delete: {
         type: Sequelize.STRING
       },
+      order: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

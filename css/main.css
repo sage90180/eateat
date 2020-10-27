@@ -743,6 +743,10 @@ header .icons .fab:hover {
   margin: 5px 0px;
 }
 
+.management-content__coupon {
+  max-height: 150px;
+}
+
 .management-content__booking {
   overflow: hidden;
   padding: 0px;

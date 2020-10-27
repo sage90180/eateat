@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   Faq.init({
     question: DataTypes.STRING,
     answer: DataTypes.STRING,
-    delete: DataTypes.STRING
+    delete: DataTypes.STRING,
+    order: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Faq',

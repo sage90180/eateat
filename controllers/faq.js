@@ -3,15 +3,15 @@ const Faq = db.Faq
 const faqController = {
   handleAdd: async (req, res, next) => {
     try {
-      const {question} = req.body
-      const {answer} = req.body
+      const {question, answer, order} = req.body
       if(!question || !answer){
         req.flash('errorMessage', '請填好，填滿！！')
         return next()
       }
       await Faq.create({
         question,
-        answer
+        answer,
+        order
       })
       req.flash('errorMessage', '新增成功！')
       return res.redirect('/admin/#faq')
@@ -22,8 +22,7 @@ const faqController = {
   },
   updateFaq: async (req, res, next) => {
     try {
-      const {question} = req.body
-      const {answer} = req.body
+      const {question, answer, order} = req.body
       if(!question || !answer){
         req.flash('errorMessage', '請填好，填滿！！')
         return next()
@@ -36,6 +35,7 @@ const faqController = {
       await faqs.update({
         question,
         answer,
+        order
       })
       req.flash('errorMessage', '修改成功！')
       return res.redirect('/admin')
@@ -45,6 +45,11 @@ const faqController = {
     }
   },
   deleteFaq: async (req, res, next) => {
+    const {username} = req.session
+    if(!username){
+      req.flash('errorMessage', '請先登入。')
+      return res.render('login')
+    }
     try {
       const faqs = await Faq.findOne({
         where: {

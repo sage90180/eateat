@@ -3,9 +3,7 @@ const Dish = db.Dish
 const dishController = {
   handleAdd: async (req, res, next) => {
     try {
-      const {TypeId} = req.body
-      const {name} = req.body
-      const {price} = req.body
+      const {TypeId, name, price} = req.body
       if(!TypeId || !name || !price ){
         req.flash('errorMessage', '請填好，填滿！！')
         return next()
@@ -24,8 +22,7 @@ const dishController = {
   },
   updateDish: async (req, res, next) => {
     try {
-      const {name} = req.body
-      const {price} = req.body
+      const {name, price} = req.body
       if(!name || !price){
         req.flash('errorMessage', '請填好，填滿！！')
         return next()
@@ -47,6 +44,11 @@ const dishController = {
     }
   },
   deleteDish: async (req, res, next) => {
+    const {username} = req.session
+    if(!username){
+      req.flash('errorMessage', '請先登入。')
+      return res.render('login')
+    }
     try {
       const dishes = await Dish.findOne({
         where:{

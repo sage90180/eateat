@@ -155,7 +155,7 @@
             <div class="row management-content__items">
               <% for(let coupon of coupons){ %>
               <form method="POST" action="/update-coupon/<%= coupon.id %>" class="col-lg-4 col-md-6 management-content__item">
-                <img class="w-100" src="<%= coupon.img %>" alt="">
+                <img class="w-100 management-content__coupon" src="<%= coupon.img %>" alt="">
                 <div>優惠卷名稱：<br><input type="text" name="name" value="<%= coupon.name %>"></div>
                 <div>圖 片：<br><input type="text" name="img" value="<%= coupon.img %>"></div>
                 <div>售 價：<br><input type="text" name="price" value="<%= coupon.price %>"></div>
@@ -200,6 +200,14 @@
           <div class="col-md-3 col-12 mb-5">
             <form method="POST" action="/add-faq" class=" management-content__form">
               <div class="form-group">
+                <label for="name">排 序</label>
+                <select name="order" class="form-control">
+                  <% for(let i=1; i<faqs.length+2; i++){ %>
+                    <option <%= i==faqs.length+1? "selected":"" %> ><%= i %></option>
+                  <% } %>
+                </select>
+              </div>
+              <div class="form-group">
                 <label for="name">問 題</label>
                 <textarea class="form-control" name="question" rows="2"></textarea>
               </div>
@@ -214,6 +222,13 @@
             <div class="row management-content__items">
               <% for(let faq of faqs){ %>
               <form action="/update-faq/<%= faq.id %>" method="POST" class="col-lg-4 col-md-6 management-content__item">
+                <div>排 序<br>
+                  <select name="order" class="form-control">
+                    <% for(let i=1; i<faqs.length+1; i++){ %>
+                      <option <%= i==faq.order? "selected":"" %> ><%= i %></option>
+                    <% } %>
+                  </select>
+                </div>
                 <div>問 題<br>
                   <textarea class="form-control" name="question" rows="2"><%= faq.question %></textarea>
                 </div>
@@ -245,7 +260,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
   </script>
-  <!-- <script src="/js/main.js"></script> -->
 </body>
 
 </html>
