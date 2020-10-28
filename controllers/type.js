@@ -37,7 +37,7 @@ const typeController = {
       })
       req.flash('errorMessage', '修改成功！')
       return res.redirect('/admin')
-    } catch {
+    } catch(err) {
       req.flash('errorMessage', err.toString())
       return next()
     }
@@ -59,7 +59,7 @@ const typeController = {
       })
       req.flash('errorMessage', '刪除成功！')
       return res.redirect('/admin')
-    } catch {
+    } catch(err) {
       req.flash('errorMessage', err.toString())
       return next()
     }

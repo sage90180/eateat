@@ -3,11 +3,11 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const flash = require('connect-flash')
 const app = express()
-const port = process.env.PORT || 5001
+const port = 5001
 
 const userController = require('./controllers/user')
-const dishController = require('./controllers/dish')
 const typeController = require('./controllers/type')
+const dishController = require('./controllers/dish')
 const couponController = require('./controllers/coupon')
 const bookingController = require('./controllers/booking')
 const faqController = require('./controllers/faq')
@@ -45,18 +45,18 @@ app.get('/admin', userController.admin)
 app.post('/add-type', typeController.handleAdd, redirectBack)
 app.get('/delete-type/:id', typeController.deleteType, redirectBack)
 app.post('/update-type/:id', typeController.updateType, redirectBack)
-// 菜單-菜色
+// // 菜單-菜色
 app.post('/add-dish', dishController.handleAdd, redirectBack)
 app.get('/delete-dish/:id', dishController.deleteDish, redirectBack)
 app.post('/update-dish/:id', dishController.updateDish, redirectBack)
-// 優惠卷
+// // 優惠卷
 app.post('/add-coupon', couponController.handleAdd, redirectBack)
 app.get('/delete-coupon/:id', couponController.deleteCoupon, redirectBack)
 app.post('/update-coupon/:id', couponController.updateCoupon, redirectBack)
-// 預約
+// // 預約
 app.post('/booking', bookingController.handleBooking, redirectBack)
 app.get('/delete-booking/:id', bookingController.deleteBooking, redirectBack)
-// 預約
+// // 問答
 app.post('/add-faq', faqController.handleAdd, redirectBack)
 app.get('/delete-faq/:id', faqController.deleteFaq, redirectBack)
 app.post('/update-faq/:id', faqController.updateFaq, redirectBack)
