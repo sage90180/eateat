@@ -861,4 +861,13 @@ header .icons .fab:hover {
     display: none;
   }
 }
+
+@media (max-width: 767px) {
+  .footer__delivery {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 /*# sourceMappingURL=main.css.map */
