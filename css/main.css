@@ -803,6 +803,9 @@ header .icons .fab:hover {
 }
 
 @media (min-width: 991px) {
+  .fa-bars::before {
+    display: none;
+  }
   .fa-bars {
     display: none;
     z-index: 999;
